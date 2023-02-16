@@ -22,45 +22,64 @@ function TaskForm() {
     loadTask(params.id);
   }, []);
   return (
-    <div>
-      <h1>{params.id ? "Edit Task" : "New Task"}</h1>
-      <Formik
-        initialValues={task}
-        enableReinitialize="true"
-        onSubmit={async (values, actions) => {
-          if (params.id) {
-            updateTask(values, actions);
-            navigate("/");
-          } else {
-            createTask(values, actions);
-          }
-          setTask({ title: "", description: "" });
-        }}
-      >
-        {({ handleChange, handleSubmit, values, isSubmitting }) => (
-          <Form onSubmit={handleSubmit}>
-            <label>title</label>
-            <input
-              type="text"
-              name="title"
-              placeholder="Write a title"
-              onChange={handleChange}
-              value={values.title}
-            />
-            <label>description</label>
-            <textarea
-              name="description"
-              rows="3"
-              placeholder="Write a description"
-              onChange={handleChange}
-              value={values.description}
-            ></textarea>
-            <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Saving..." : "Save"}
-            </button>
-          </Form>
-        )}
-      </Formik>
+    <div className="d-flex h-75 align-items-center justify-content-center ">
+      <div className="bg-info rounded-5 w-50 p-5 ">
+        <h1 className="text-center">{params.id ? "Edit Task" : "New Task"}</h1>
+        <Formik
+          initialValues={task}
+          enableReinitialize="true"
+          onSubmit={async (values, actions) => {
+            if (params.id) {
+              updateTask(values, actions);
+              navigate("/");
+            } else {
+              createTask(values, actions);
+            }
+            setTask({ title: "", description: "" });
+          }}
+        >
+          {({ handleChange, handleSubmit, values, isSubmitting }) => (
+            <Form
+              className="d-flex flex-column justify-content-center"
+              onSubmit={handleSubmit}
+            >
+              <div className="mb-3">
+                <label className="form-label">Title: </label>
+                <input
+                  className="form-control"
+                  type="text"
+                  name="title"
+                  placeholder="Write a title"
+                  onChange={handleChange}
+                  value={values.title}
+                />
+              </div>
+
+              <div className="mb-3">
+                <label className="form-label">Description: </label>
+                <textarea
+                  className="form-control"
+                  name="description"
+                  rows="3"
+                  placeholder="Write a description"
+                  onChange={handleChange}
+                  value={values.description}
+                ></textarea>
+              </div>
+
+              <div className="mb-3"></div>
+
+              <button
+                className="btn btn-dark"
+                type="submit"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Saving..." : "Save"}
+              </button>
+            </Form>
+          )}
+        </Formik>
+      </div>
     </div>
   );
 }

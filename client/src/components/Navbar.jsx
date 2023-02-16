@@ -3,20 +3,22 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <div className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <h1 className="navbar-brand">React Mysql</h1>
-      <ul className="d-flex">
-        <li>
-          <Link className="text-white text-decoration-none" to="/">
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link className="text-white text-decoration-none" to="/new">
-            Create Task
-          </Link>
-        </li>
-      </ul>
+    <div className="bg-dark sticky-top ">
+      <div className="navbar d-flex justify-content-between container navbar-expand-lg navbar-dark ">
+        <h1 className="navbar-brand text-info">ToDoListo</h1>
+        <ul className="d-flex list-unstyled">
+          <li className="nav-item mx-3 mt-1 btn ">
+            <Link className="text-info text-decoration-none" to="/">
+              Home
+            </Link>
+          </li>
+          <li className="nav-item mx-3  mt-1 btn">
+            <Link className="text-info text-decoration-none" to="/new">
+              Create Task
+            </Link>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
